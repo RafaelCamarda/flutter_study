@@ -95,13 +95,13 @@ class LoginPage extends StatelessWidget {
     final login = _loginController.text;
     final password = _passwordController.text;
 
-    final validLogin = await LoginService.call(login, password);
+    final response = await LoginService.call(login, password);
 
-    if(validLogin) {
+    if(response.status == "OK") {
       print("Foi login");
     }
     else {
-      alert(context, "Erro", "Erro durante o login");
+      alert(context, "Erro", response.message);
     }
   }
 }
